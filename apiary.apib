@@ -1,0 +1,447 @@
+FORMAT: 1A
+HOST: http://ec2-35-163-191-66.us-west-2.compute.amazonaws.com/api/v1
+
+# Somami
+
+Somami api documentation to serve clients applications
+
+## Roles [/role/new]
+### Add New Role [POST]
+
++ Parameters
+    + role_name (string) - name of role (Rider or Customer)
+
++ Request (application/json)
+
+        {
+            "role_name": "Rider"
+        }
+            
+## [/role/update]
+### Update Role [POST]
+
++ Parameters
+    + role_name (string) - name of role (Rider or Customer)
+
++ Request (application/json)
+
+        {
+            "role_name": "Rider"
+        }
+
+## [/role/delete]
+### Delete Role [POST]
+
++ Parameters
+    + role_id (string) - name of role (Rider or Customer)
+
++ Request (application/json)
+
+        {
+            "role_id": "5e822c5bd5726faac0c7e509"
+        }
+
+## [/role/all]
+Fetch all Roles
+### Get All Roles [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "message": [
+                    {
+                        "_id": "5e9848249265c21d7bd0ffe3",
+                        "label": null,
+                        "date_created": "2020-04-16T11:57:24.337Z",
+                        "date_modified": "2020-04-16T11:57:24.337Z"
+                    },
+                    {
+                        "_id": "5e9848619265c21d7bd0ffe4",
+                        "label": null,
+                        "date_created": "2020-04-16T11:58:25.827Z",
+                        "date_modified": "2020-04-16T11:58:25.827Z"
+                    }
+                ]
+            }
+            
+## [/role/one]
+Fetch A Single Role
+### Get One Role [POST]
+
++ Parameters
+    + label (string)
+    
++ Request (application/json)
+
+        {
+            "label": "Rider"
+        }
+
+## Category [/category/new]
+### Add New Category [POST]
+
++ Parameters
+    + cat_name (string) - name of category (Small || Medium || Big)
+
++ Request (application/json)
+
+        {
+            "cat_name": "Small"
+        }
+            
+## [/category/update]
+### Update category [POST]
+
++ Parameters
+    + cat_name (string)
+
++ Request (application/json)
+
+        {
+            "cat_name": "Small"
+        }
+
+## [/role/delete]
+### Delete Category [POST]
+
++ Parameters
+    + role_id (string)
+
++ Request (application/json)
+
+        {
+            "category_id": "5e822c5bd5726faac0c7e509",
+            "cat_name": "Medium"
+        }
+
+## [/category/all]
+### Get All Categories [GET]
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "message": [
+                    {
+                        "_id": "5e9848249265c21d7bd0ffe3",
+                        "label": "Small",
+                        "date_created": "2020-04-16T11:57:24.337Z",
+                        "date_modified": "2020-04-16T11:57:24.337Z"
+                    },
+                    {
+                        "_id": "5e9848619265c21d7bd0ffe4",
+                        "label": "Medium",
+                        "date_created": "2020-04-16T11:58:25.827Z",
+                        "date_modified": "2020-04-16T11:58:25.827Z"
+                    }
+                ]
+            }
+            
+## [/category/one]
+### Get One Category [POST]
+
++ Parameters
+    + cat_name (string)
+    
++ Request (application/json)
+
+        {
+            "cat_name": "Small"
+        }
+
+
+## Authentication [/auth/get_otp]
+Verify user phone number via OTP
+### Generate new OTP [POST]
+
++ Parameters
+    + country_code (string) - user's country code
+    + phone_number (string) - user's mobile number
+
++ Request (application/json)
+
+        {
+            "country_code": "+233",
+            "phone_number": "0240865997"
+        }
+
++ Response 200 (application/json)
+
+    + Body
+
+            {
+                "message": "OTP Sent 265293"
+            }
+            
+            
+## [/auth/check_number]
+Verify & Check User History
+### User Verification [POST]
+
++ Parameters
+    + country_code (string)
+    + phone_number (string)
+    + role_name (string)
+    + otp (Int) - OTP Received from verification
+    
++ Request (application/json)
+
+        {
+            "role_name": "Rider",
+            "country_code": "+233",
+            "phone_number": "0240865997",
+            "otp": 803315
+        }
+        
+
+## [/auth/signup]
+Signup New User
+### New User Signup [POST]
+    
++ Parameters
+    + role_name (string) - (Rider or Customer)
+    + country_code (string) - user's country code
+    + phone_number (string) - user's phone number
+    + first_name (string) - user first name
+    + last_name (string) - user last name
+    + image (file) - user passport photo
+    + fcm_token (string) - firebase cloud message token
+
++ Request (application/json)
+
+        {
+            "role_name": "Rider",
+            "country_code": "+233",
+            "phone_number": "0240865997",
+            "first_name": "Benjamin",
+            "last_name": "Acquah",
+            "image": "",
+            "fcm_token": "xdiwegrouqer3784657483yhrfewqnlgdqgho5hgidfhwkhgwiowerthyo5iui"
+        }
+
++ Response 200 (application/form-data)
+
+    + Body
+
+            {
+                "message": {
+                    "_id": "5e9738450c616d6605989542",
+                    "country_code": "+233",
+                    "phone_number": "0240865995",
+                    "date_created": "2020-04-15T16:56:24.000Z",
+                    "date_modified": 0,
+                    "device_id": null,
+                    "fcm_token": "xdiwegrouqer3784657483yhrfewqnlgdqgho5hgidfhwkhgwiowerthyo5iui",
+                    "first_name": "Benjamin",
+                    "last_name": "Acquah",
+                    "otp": "519302",
+                    "passport_photo": "https://kng-courier-bkt.s3-us-west-2.amazonaws.com/99f7f602-44f2-47c3-9673-a236bc39fe57",
+                    "role_id": "5e822c5bd5726faac0c7e509",
+                    "role_name": "Rider",
+                    "access_token": {
+                        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNWU5NzM4NDUwYzYxNmQ2NjA1OTg5NTQyIiwiaWF0IjoxNTg2OTY5Nzg0LCJleHAiOjE1OTQ3NDU3ODR9.VLduwoE9x0VL4-agCu8dtsq5BcdvTIEYkzWNaA4UA9k",
+                        "expiry_at": 1594745784
+                    }
+                }
+            }
+            
+## Rider's Identification [/auth/rider/identification]
+Rider Identification Information
+### Add Rider's Identification [POST]
+    
++ Parameters
+    + user_id (string) - (Rider(user) id)
+    + identification_type (string) - Passport || National ID || NHIS || Voter's ID
+    + date_of_birth (string) - Rider's date of birth
+    + identification_image (file) - rider's passport image
+    + identification_number (string) - Selected ID number
+    + previous_home_address (string) - rider's previous home address
+    + current_home_address (string) - rider's current address
+    + next_of_kin (string) - add next of kin
+    + next_of_kin_contact (string) - next of kin's contact
+    + next_of_kin_address (string) - next of kin's address
+    
++ Request (application/json)
+
+        {
+            "user_id": "5e9052f90d1f47e8e802f023",
+            "identification_type": "Ghana Card",
+            "date_of_birth": "23-02-1990",
+            "identification_image": "Some image",
+            "identification_number": "GH00B654",
+            "place_of_birth": "Ghana",
+            "previous_home_address": "Ghana post address",
+            "current_home_address": "Ghana post address",
+            "next_of_kin": "Ebenezer Ato Acquah",
+            "next_of_kin_contact": "0240865997",
+            "next_of_kin_address": "Ghana post address"
+        }
+
+## [/auth/rider/identification/verify]
+Verify Rider's Identification
+### Verify Identification [POST]
+
++ Parameters
+    + user_id (string) - Rider's id
+
++ Request (application/json)
+
+        {
+            "user_id": "5e861964be7b2447e63b175a"
+        }
+        
+
+## Rider's Vehicle [/auth/rider/vehicle]
+Rider's Vehicle Information
+### Add Rider's Vehicle [POST]
+    
++ Parameters
+    + user_id (string) - (Rider(user) id)
+    + vehicle_number (string) - Rider's vehicle number
+    + vehicle_type (string) - Rider's vehicle type
+    + vehicle_image (file) - Rider's vehicle image
+    + vehicle_brand (string) - Rider's vehicle brand
+    + vehicle_size (string) - Small || Medium || Big
+    
++ Request (application/json)
+
+        {
+            "vehicle_number": "GA-280-20",
+            "vehicle_type": "Van",
+            "vehicle_brand": "Toyota",
+            "vehicle_size": "Large",
+            "user_id": "5e9052f90d1f47e8e802f023"
+        }
+        
+## [/auth/rider/vehicle/verify]
+Verify Rider's Vehicle
+### Verify Vehicle [POST]
+
++ Parameters
+    + user_id (string) - Rider's id
+
++ Request (application/json)
+
+        {
+            "user_id": "5e876b40a22eee7cb440f1db"
+        }
+
+## Onboard Rider [/auth/rider/onboard]
+Onboard a new driver after verify identity and vehicle information.
+### Onboard New Rider [POST]
+
++ Parameters
+    + country_code (string) - Rider's country code
+    + phone_number (string) - Rider's mobile number
+
++ Request (application/json)
+
+        {
+            "country_code": "+233",
+            "phone_number": "0240865992"
+        }
+        
+## Rider Status [/rider/change/status]
+Track and change rider's availability status
+### Rider status [PATCH]
+
++ Parameters
+    + user_id (string) - Rider's user id
+    + rider_status (string) - Idle || Busy
+    + rider_activated (Boolean)
+
++ Request (application/json)
+
+        {
+            "user_id": "5e9052f90d1f47e8e802f023",
+            "rider_status": "idle",
+            "rider_activated": true
+        }
+        
+## Rider Locations [/rider/location/new]
+Track Rider's Locations
+### Rider locations [POST]
+
++ Parameters
+    + user_id (string) - Rider's user id
+    + current_location_name (string)
+    + current_location_radius (Int)
+    + longitude (string) - rider's location longitude
+    + latitude (string) - rider's location latitude
+
++ Request (application/json)
+
+        {
+            "user_id": "5e9052f90d1f47e8e802f023",
+            "current_location_name": "Accra",
+            "current_location_radius": 500,
+            "longitude": "468204583690485.34250973",
+            "latitude": "-237865378563.23476832"
+        }
+        
+## Client Courier Request [/client/riders/avail/fare]
+Client new request,
+Check riders available,
+Calculte distance,
+Calculate time,
+Calculate fare
+### Client Request [POST]
+
++ Parameters
+    + user_id (string) - Rider's user id
+    + item_name (string)
+    + item_image (file)
+    + category_id (string)
+    + pickup_location_name (string)
+    + pickup_longitude (string)
+    + pickup_latitude (string)
+    + destination_location_name (string)
+    + pickup_location_name (string)
+    + destination_longitude (string)
+    + destination_latitude (string)
+
++ Request (application/json)
+
+        {
+            "item_name": "Juke Bag",
+            "item_image": "some image",
+            "category_id": "5e84944ee362241159b3c6e1",
+            "user_id": "5e9051980d1f47e8e802eac6",
+            "pickup_location_name": "Accra",
+            "pickup_longitude": "097359739135898345.972345",
+            "pickup_latitude": "-1239579347587914315939",
+            "destination_location_name": "Accra",
+            "destination_longitude": "468204583690485.34250973",
+            "destination_latitude": "-237865378563.23476832"
+        }
+        
+## [/client/confirm/request]
+Confirm sent request
+### Confirm request [POST]
+
++ Parameters
+    + request_id (string) - the new request id
+
++ Request (application/json)
+
+        {
+            "request_id": "5e9053a7e19f05cb02d0300e"
+        }
+        
+## Tokens [/token/new]
+Rider add token
+### Add New Token [POST]
+
++ Parameters
+    + phone_number (string) - rider's registered phone number
+    + amount (Int) - amount of token to be purchased
+
++ Request (application/json)
+
+        {
+            "phone_number": "0240865997",
+            "amount": 15
+        }

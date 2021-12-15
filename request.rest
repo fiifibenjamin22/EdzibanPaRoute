@@ -1,0 +1,229 @@
+POST http://localhost:8000/api/v1/token/new
+Content-Type: application/json
+
+{
+  "phone_number": "0240865997",
+  "amount": 15
+}
+
+###
+POST http://localhost:3000/api/v1/client/confirm/request
+Content-Type: application/json
+
+{
+  "request_id": "5e9053a7e19f05cb02d0300e"
+}
+
+###
+POST http://localhost:8000/api/v1/client/riders/avail/fare
+Content-Type: application/json
+
+{
+  "item_name": "Juke Bag",
+  "item_image": "some image",
+  "category_id": "5e84944ee362241159b3c6e1",
+  "user_id": "5e9051980d1f47e8e802eac6",
+  "pickup_location_name": "Accra",
+  "pickup_longitude": "097359739135898345.972345",
+  "pickup_latitude": "-1239579347587914315939",
+  "destination_location_name": "Accra",
+  "destination_longitude": "468204583690485.34250973",
+  "destination_latitude": "-237865378563.23476832"
+}
+
+###
+POST http://localhost:8000/api/v1/rider/location/new
+Content-Type: application/json
+
+{
+  "user_id": "5e8e457853b3c41ebf574b38",
+  "current_location_name": "Accra",
+  "current_location_radius": 500,
+  "longitude": "468204583690485.34250973",
+  "latitude": "-237865378563.23476832"
+}
+
+###
+
+
+###
+POST http://localhost:8000/api/v1/rider/status/available
+Content-Type: application/json
+
+{
+  "customer_current_location_name": "Accra"
+}
+
+###
+PATCH http://localhost:3000/api/v1/rider/change/status
+Content-Type: application/json
+
+{
+  "user_id": "5e9052f90d1f47e8e802f023",
+  "rider_status": "idle",
+  "rider_activated": true
+}
+
+###
+PATCH http://localhost:3000/api/v1/auth/rider/identification/verify
+Content-Type: application/json
+
+{
+  "user_id": "5e861964be7b2447e63b175a"
+}
+
+
+###
+PATCH http://localhost:3000/api/v1/auth/rider/vehicle/verify
+Content-Type: application/json
+
+{
+  "user_id": "5e876b40a22eee7cb440f1db"
+}
+
+###
+POST http://localhost:8000/api/v1/auth/rider/vehicle
+Content-Type: application/json
+
+{
+  "vehicle_number": "GA-280-20",
+  "vehicle_type": "Van",
+  "vehicle_brand": "Toyota",
+  "vehicle_size": "Large",
+  "user_id": "5e989ede0c616d66059abe45"
+}
+
+###
+POST http://localhost:8000/api/v1/auth/rider/identification
+Content-Type: application/json
+
+{
+  "user_id": "5f2f50c24faaa73da35d1355",
+  "identification_type": "Ghana Card",
+  "date_of_birth": "23-02-1990",
+  "identification_image": "Some image",
+  "identification_number": "GH00B654",
+  "place_of_birth": "Ghana",
+  "previous_home_address": "Ghana post address",
+  "current_home_address": "Ghana post address",
+  "next_of_kin": "Ebenezer Ato Acquah",
+  "next_of_kin_contact": "0240865997",
+  "next_of_kin_address": "Ghana post address"
+}
+
+###
+POST http://localhost:8000/api/v1/auth/rider/onboard
+Content-Type: application/json
+
+{
+  "country_code": "+233",
+  "phone_number": "0240865997"
+}
+
+###
+POST http://localhost:3000/api/v1/client/new_request
+Content-Type: application/json
+
+{
+  "item_name": "Juke Bag",
+  "item_image": "some image",
+  "category_id": "5e84944ee362241159b3c6e1",
+  "user_id": "5e8e457853b3c41ebf574b38",
+  "pickup_location_name": "Accra",
+  "pickup_longitude": "097359739135898345.972345",
+  "pickup_latitude": "-1239579347587914315939",
+  "destination_location_name": "Accra",
+  "destination_longitude": "468204583690485.34250973",
+  "destination_latitude": "-237865378563.23476832"
+}
+
+###
+DELETE http://localhost:3000/api/v1/category/delete
+Content-Type: application/json
+
+{
+  "category_id": "5e8492a71a2028109eb30bd4"
+}
+
+###
+PATCH http://localhost:3000/api/v1/category/update
+Content-Type: application/json
+
+{
+  "category_id": "5e84935bc8085810f3fbec5f",
+  "cat_name": "Medium"
+}
+
+###
+GET http://localhost:3000/api/v1/category/all
+Accept: application/json
+
+###
+POST http://localhost:3000/api/v1/category/new
+Content-Type: application/json
+
+{
+  "cat_name": "Small"
+}
+
+###
+POST http://localhost:8000/api/v1/auth/signup
+Content-Type: application/json
+
+{
+  "country_code": "+233",
+  "phone_number": "0240865997",
+  "first_name": "Benjamin",
+  "last_name": "Acquah",
+  "otp": 370654,
+  "fcm_token": "xdiwegrouqer3784657483yhrfewqnlgdqgho5hgidfhwkhgwiowerthyo5iui"
+}
+
+###
+POST http://localhost:3000/api/v1/auth/get_otp
+Content-Type: application/json
+
+{
+  "country_code": "+233",
+  "phone_number": "0240865997",
+  "role_name": "Rider"
+}
+
+###
+DELETE http://localhost:3000/api/v1/role/delete
+Content-Type: application/json
+
+{
+  "role_id": "5e822c5bd5726faac0c7e509"
+}
+
+###
+PATCH http://localhost:3000/api/v1/role/update
+Content-Type: application/json
+
+{
+  "role_id": "5e822c5bd5726faac0c7e509",
+  "label": "Rider"
+}
+
+###
+POST http://localhost:3000/api/v1/role/one
+Content-Type: application/json
+
+{
+  "label": "Rider"
+}
+
+###
+GET http://localhost:3000/api/v1/role/all
+Accept: application/json
+
+###
+POST http://localhost:3000/api/v1/role/new
+Content-Type: application/json
+
+{
+  "role_name": "Customer"
+}
+
+###
